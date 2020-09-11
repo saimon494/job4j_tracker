@@ -24,9 +24,9 @@ public class StartUI {
         System.out.println();
     }
 
-    public static void editItem(Input input, Tracker tracker) {
+    public static void replaceItem(Input input, Tracker tracker) {
         System.out.println("=== Edit item ===");
-        int id = input.askInt("--> Enter item id to edit: ");
+        int id = input.askInt("--> Enter item id to replace: ");
         String name = input.askStr("--> Enter item name to replace from: ");
         Item newItem = new Item(name);
         if (tracker.replace(id, newItem)) {
@@ -86,7 +86,7 @@ public class StartUI {
             switch (select) {
                 case 0 -> createItem(input, tracker);
                 case 1 -> showItems(tracker);
-                case 2 -> editItem(input, tracker);
+                case 2 -> replaceItem(input, tracker);
                 case 3 -> deleteItem(input, tracker);
                 case 4 -> findItemById(input, tracker);
                 case 5 -> findItemByName(input, tracker);
@@ -99,7 +99,7 @@ public class StartUI {
         System.out.println("==== Menu ====");
         System.out.println("0. Add new item");
         System.out.println("1. Show all items");
-        System.out.println("2. Edit item");
+        System.out.println("2. Replace item");
         System.out.println("3. Delete item");
         System.out.println("4. Find item by id");
         System.out.println("5. Find items by name");
