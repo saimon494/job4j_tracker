@@ -56,6 +56,29 @@ public class StartUITest {
     }
 
     @Test
+    public void whenNotShowItem() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Input in = new StubInput(
+                new String[] {"0", "1"}
+        );
+        UserAction[] actions = {
+                new ShowAction(out),
+                new Exit()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "==== Menu ====" + System.lineSeparator()
+                        + "0. Show all items" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator()
+                        + "No items to show" + System.lineSeparator()
+                        + "==== Menu ====" + System.lineSeparator()
+                        + "0. Show all items" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator()
+        ));
+    }
+
+    @Test
     public void whenReplaceItem() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
@@ -75,6 +98,31 @@ public class StartUITest {
                         + "1. Exit Program" + System.lineSeparator()
                         + "Item with id " + item.getId()
                         + " update" + System.lineSeparator()
+                        + "==== Menu ====" + System.lineSeparator()
+                        + "0. Replace item" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator()
+        ));
+    }
+
+    @Test
+    public void whenNotReplaceItem() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Replaced item"));
+        String replacedName = "New item name";
+        Input in = new StubInput(
+                new String[] {"0", String.valueOf(item.getId() + 1), replacedName, "1"}
+        );
+        UserAction[] actions = {
+                new ReplaceAction(out),
+                new Exit()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "==== Menu ====" + System.lineSeparator()
+                        + "0. Replace item" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator()
+                        + "No such id" + System.lineSeparator()
                         + "==== Menu ====" + System.lineSeparator()
                         + "0. Replace item" + System.lineSeparator()
                         + "1. Exit Program" + System.lineSeparator()
@@ -106,7 +154,29 @@ public class StartUITest {
         ));
     }
 
-
+    @Test
+    public void whenNotDeleteItem() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Deleted item"));
+        Input in = new StubInput(
+                new String[] {"0", String.valueOf(item.getId() + 1), "1"}
+        );
+        UserAction[] actions = {
+                new DeleteAction(out),
+                new Exit()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "==== Menu ====" + System.lineSeparator()
+                        + "0. Delete item" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator()
+                        + "No such id" + System.lineSeparator()
+                        + "==== Menu ====" + System.lineSeparator()
+                        + "0. Delete item" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator()
+        ));
+    }
 
     @Test
     public void whenFindItemId() {
@@ -133,6 +203,31 @@ public class StartUITest {
     }
 
     @Test
+    public void whenNotFindItemId() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Item"));
+        Input in = new StubInput(
+                new String[] {"0", String.valueOf(item.getId() + 1), "1"}
+        );
+        UserAction[] actions = {
+                new FindIdAction(out),
+                new Exit()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "==== Menu ====" + System.lineSeparator()
+                        + "0. Find item by id" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator()
+                        + "No such item with id "
+                        + (item.getId() + 1) + System.lineSeparator()
+                        + "==== Menu ====" + System.lineSeparator()
+                        + "0. Find item by id" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator()
+        ));
+    }
+
+    @Test
     public void whenFindItemName() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
@@ -151,6 +246,31 @@ public class StartUITest {
                         + "0. Find items by name" + System.lineSeparator()
                         + "1. Exit Program" + System.lineSeparator()
                         + item.toString() + System.lineSeparator()
+                        + "==== Menu ====" + System.lineSeparator()
+                        + "0. Find items by name" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator()
+        ));
+    }
+
+    @Test
+    public void whenNotFindItemName() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        String name = "Item";
+        Input in = new StubInput(
+                new String[] {"0", name, "1"}
+        );
+        UserAction[] actions = {
+                new FindNameAction(out),
+                new Exit()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "==== Menu ====" + System.lineSeparator()
+                        + "0. Find items by name" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator()
+                        + "No such item with name "
+                        + "\"" + name + "\"" + System.lineSeparator()
                         + "==== Menu ====" + System.lineSeparator()
                         + "0. Find items by name" + System.lineSeparator()
                         + "1. Exit Program" + System.lineSeparator()
