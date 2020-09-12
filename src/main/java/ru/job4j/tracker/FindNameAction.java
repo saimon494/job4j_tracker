@@ -18,10 +18,10 @@ public class FindNameAction implements UserAction {
         Item[] newItems = tracker.findByName(name);
         if (newItems.length != 0) {
             for (Item i : newItems) {
-                System.out.println(i);
+                out.println(i);
             }
         } else {
-            System.out.println("No such item with name " + "\"" + name + "\"");
+            out.println("No such item with name " + "\"" + name + "\"");
         }
         return true;
     }

@@ -17,10 +17,10 @@ public class ShowAction implements UserAction {
         Item[] items = tracker.findAll();
         if (items.length != 0) {
             for (Item i : items) {
-                System.out.println(i);
+                out.println(i);
             }
         } else {
-            System.out.println("No items to show");
+            out.println("No items to show");
         }
         return true;
     }
