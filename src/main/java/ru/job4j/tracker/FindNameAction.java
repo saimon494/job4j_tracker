@@ -9,7 +9,7 @@ public class FindNameAction implements UserAction {
 
     @Override
     public String name() {
-        return "Find items by name";
+        return "Find item by name";
     }
 
     @Override
