@@ -5,7 +5,7 @@ import ru.job4j.tracker.Tracker;
 public class TrackerSingle2 {
     private static TrackerSingle2 instance;
 
-    private static Tracker tracker;
+    private final Tracker tracker = new Tracker();
 
     public Tracker getTracker() {
         return tracker;

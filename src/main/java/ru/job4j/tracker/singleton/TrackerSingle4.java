@@ -6,7 +6,7 @@ public class TrackerSingle4 {
     private TrackerSingle4() {
     }
 
-    private static Tracker tracker;
+    private final Tracker tracker = new Tracker();
 
     public Tracker getTracker() {
         return tracker;
