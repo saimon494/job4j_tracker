@@ -1,7 +1,15 @@
 package ru.job4j.tracker.singleton;
 
+import ru.job4j.tracker.Tracker;
+
 public class TrackerSingle3 {
     private static final TrackerSingle3 INSTANCE = new TrackerSingle3();
+
+    private static Tracker tracker;
+
+    public Tracker getTracker() {
+        return tracker;
+    }
 
     private TrackerSingle3() {
     }
