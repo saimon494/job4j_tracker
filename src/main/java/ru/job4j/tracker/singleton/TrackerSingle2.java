@@ -7,11 +7,11 @@ public class TrackerSingle2 {
 
     private final Tracker tracker = new Tracker();
 
-    public Tracker getTracker() {
-        return tracker;
+    private TrackerSingle2() {
     }
 
-    private TrackerSingle2() {
+    public Tracker getTracker() {
+        return tracker;
     }
 
     public static TrackerSingle2 getInstance() {
@@ -20,4 +20,5 @@ public class TrackerSingle2 {
         }
         return instance;
     }
+
 }
