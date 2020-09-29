@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Departments {
     public static List<String> fillGaps(List<String> deps) {
-        HashSet<String> tmp = new HashSet<>();
+        Set<String> tmp = new TreeSet<>();
         for (String value : deps) {
             String dept = "";
             for (String el : value.split("/")) {
@@ -16,9 +16,7 @@ public class Departments {
                 tmp.add(dept);
             }
         }
-        List<String> rsl = new ArrayList<>(tmp);
-        sortAsc(rsl);
-        return rsl;
+        return new ArrayList<>(tmp);
     }
 
     public static void sortAsc(List<String> orgs) {
