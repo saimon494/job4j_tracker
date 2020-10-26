@@ -67,13 +67,12 @@ public class SchoolTest {
     public void whenCollectToMap() {
         School sc = new School();
         Student a1 = new Student(50, "Ivanov");
-        Student a2 = new Student(60, "Petrov");
+        Student a2 = new Student(60, "Ivanov");
         Student a3 = new Student(70, "Sidorov");
         List<Student> newList = List.of(a1, a2, a3);
         Map<String, Student> rsl = sc.collectToMap(newList);
         Map<String, Student> expected = Map.of(
                 a1.getSurname(), a1,
-                a2.getSurname(), a2,
                 a3.getSurname(), a3
         );
         assertThat(rsl, is(expected));
