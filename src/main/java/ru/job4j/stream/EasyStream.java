@@ -2,38 +2,67 @@ package ru.job4j.stream;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.ListIterator;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class EasyStream {
 
-    private final Consumer consumer;
+    private ListIterator<Integer> source;
+    private ArrayList<Integer> rsl;
 
-    private static ArrayList<Integer> items = new ArrayList<>();
+    public static class StreamBuilder {
+        private EasyStream newEasyStream;
 
-    public EasyStream(Consumer consumer) {
-        this.consumer = consumer;
+        public StreamBuilder() {
+            newEasyStream = new EasyStream();
+        }
+
+        public StreamBuilder SourceList(List<Integer> source) {
+            newEasyStream.source = source.listIterator();
+            return this;
+        }
+
+        public StreamBuilder RslList() {
+            newEasyStream.rsl = new ArrayList<>();
+            return this;
+        }
+
+        public EasyStream build() {
+            return newEasyStream;
+        }
     }
 
     public static EasyStream of(List<Integer> source) {
-        return new EasyStream(integer -> items.addAll(source));
+        return new StreamBuilder()
+                .SourceList(source)
+                .RslList()
+                .build();
     }
 
     public EasyStream map(Function<Integer, Integer> fun) {
-        throw new UnsupportedOperationException();
+        while (source.hasNext()) {
+            Integer current = source.next();
+            rsl.add(fun.apply(current));
+        }
+        return EasyStream.of(rsl);
     }
 
     public EasyStream filter(Predicate<Integer> fun) {
-        return new EasyStream(value -> {
-            if (fun.test((Integer) value)) {
-                items.add((Integer) value);
+        while (source.hasNext()) {
+            Integer current = source.next();
+            if (fun.test(current)) {
+                rsl.add(current);
             }
-        });
+        }
+        return EasyStream.of(rsl);
     }
 
     public List<Integer> collect() {
-        return items;
+        while (source.hasNext()) {
+            rsl.add(source.next());
+        }
+        return rsl;
     }
 }
 
