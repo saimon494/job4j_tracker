@@ -10,7 +10,8 @@ public class LambdaBlock {
             return left.compareTo(right);
         };
         Comparator<String> cmpDescSize = (left, right) -> {
-            System.out.println("compare length of strings: " + right.length() + " and " + left.length());
+            System.out.println("compare length of strings: "
+                    + right.length() + " and " + left.length());
             return right.length() - left.length();
         };
 

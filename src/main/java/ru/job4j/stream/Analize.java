@@ -15,8 +15,8 @@ public class Analize {
     }
 
     public static class User {
-        int id;
-        String name;
+        private final int id;
+        private final String name;
 
         public User(int id, String name) {
             this.id = id;
@@ -33,8 +33,12 @@ public class Analize {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof User)) return false;
+            if (this == o) {
+                return true;
+            }
+            if (!(o instanceof User)) {
+                return false;
+            }
 
             User user = (User) o;
 
@@ -48,25 +52,25 @@ public class Analize {
 
         @Override
         public String toString() {
-            return "User{" +
-                    "id=" + id +
-                    ", name='" + name + '\'' +
-                    '}';
+            return "User{"
+                    + "id=" + id
+                    + ", name='" + name + '\''
+                    + '}';
         }
     }
 
     public static class Info {
-        int added;
-        int changed;
-        int deleted;
+        private int added;
+        private int changed;
+        private int deleted;
 
         @Override
         public String toString() {
-            return "Info{" +
-                    "added=" + added +
-                    ", changed=" + changed +
-                    ", deleted=" + deleted +
-                    '}';
+            return "Info{"
+                    + "added=" + added
+                    + ", changed=" + changed
+                    + ", deleted=" + deleted
+                    + '}';
         }
     }
 

@@ -18,12 +18,12 @@ public class EasyStream {
             newEasyStream = new EasyStream();
         }
 
-        public StreamBuilder SourceList(List<Integer> source) {
+        public StreamBuilder sourceList(List<Integer> source) {
             newEasyStream.source = source.listIterator();
             return this;
         }
 
-        public StreamBuilder RslList() {
+        public StreamBuilder rslList() {
             newEasyStream.rsl = new ArrayList<>();
             return this;
         }
@@ -35,8 +35,8 @@ public class EasyStream {
 
     public static EasyStream of(List<Integer> source) {
         return new StreamBuilder()
-                .SourceList(source)
-                .RslList()
+                .sourceList(source)
+                .rslList()
                 .build();
     }
 

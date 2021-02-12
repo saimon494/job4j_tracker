@@ -11,7 +11,7 @@ public class FlatMapTest {
 
     @Test
     public void collectMatrix() {
-        Integer[][] matrix = new Integer[][]{{1,2}, {3,4}, {5,6}};
+        Integer[][] matrix = new Integer[][]{{1, 2}, {3, 4}, {5, 6}};
         List<Integer> rsl = FlatMap.collectMatrix(matrix);
         List<Integer> expected = List.of(1, 2, 3, 4, 5, 6);
         assertThat(rsl, is(expected));
