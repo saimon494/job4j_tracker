@@ -3,6 +3,11 @@ language: java
 jdk:
   - openjdk14
 
+services:
+  - postgresql
+
+before_install:
+  - psql -c 'create database tracker;' -U postgres
 # используем режим обычного пользователя для сборки проекта.
 sudo: false
 
@@ -14,10 +19,8 @@ after_success:
 # Отправлять уведомление на почту youremail@smtp.ru(Изменить на свою) если сборка упала
 notifications:
   email:
-    recipients:
-      - saimon494@outlook.com
     on_success: never # default: change
-    on_failure: always # default: always
+    on_failure: never # default: always
 
 env:
   global:
