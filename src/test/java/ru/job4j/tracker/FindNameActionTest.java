@@ -17,14 +17,15 @@ public class FindNameActionTest {
     public void whenExecuteThenSuccess() throws SQLException {
         Output out = new StubOutput();
         Store tracker = new MemTracker();
-        tracker.add(new Item("New item"));
+        Item item = tracker.add(new Item("New item"));
         var findNameAction = new FindNameAction(out);
 
         Input input = mock(Input.class);
         when(input.askStr(any(String.class))).thenReturn("New item");
         findNameAction.execute(input, tracker);
+        String ln = System.lineSeparator();
 
-        assertThat(out.toString(), is("Item{id=1, name='New item', created=2020-09-24T22:00}\r\n"));
+        assertThat(out.toString(), is(item.toString() + ln));
     }
 
     @Test
@@ -37,7 +38,8 @@ public class FindNameActionTest {
         Input input = mock(Input.class);
         when(input.askStr(any(String.class))).thenReturn("New item 2");
         findNameAction.execute(input, tracker);
+        String ln = System.lineSeparator();
 
-        assertThat(out.toString(), is("No such item with name \"New item 2\"\r\n"));
+        assertThat(out.toString(), is("No such item with name \"New item 2\"" + ln));
     }
 }

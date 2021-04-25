@@ -36,8 +36,9 @@ public class DeleteActionTest {
 
         Input input = mock(Input.class);
         deleteAction.execute(input, tracker);
+        String ln = System.lineSeparator();
 
-        assertThat(out.toString(), is("No such id\r\n"));
+        assertThat(out.toString(), is("No such id" + ln));
         assertThat(tracker.findAll().size(), is(1));
     }
 }

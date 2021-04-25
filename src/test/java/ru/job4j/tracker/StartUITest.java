@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -14,10 +15,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class StartUITest {
     private Store tracker;
+    private Store memTracker;
 
     @Before
     public void init() throws IOException {
         tracker = new SqlTracker();
+        memTracker = new MemTracker();
         tracker.init();
     }
 
@@ -48,7 +51,7 @@ public class StartUITest {
     @Test
     public void whenShowItem() throws SQLException {
         Output out = new StubOutput();
-        Item item = tracker.add(new Item("New item"));
+        Item item = memTracker.add(new Item("New item"));
         String newName = "New item";
         Input in = new StubInput(
                 new String[]{"0", String.valueOf(item.getId()), newName, "1"}
@@ -57,7 +60,7 @@ public class StartUITest {
                 new ShowAction(out),
                 new Exit()
         );
-        new StartUI(out).init(in, tracker, actions);
+        new StartUI(out).init(in, memTracker, actions);
         assertThat(out.toString(), is(
                 String.format(
                         "==== Menu ====%n"
@@ -81,7 +84,7 @@ public class StartUITest {
                 new ShowAction(out),
                 new Exit()
         );
-        new StartUI(out).init(in, tracker, actions);
+        new StartUI(out).init(in, memTracker, actions);
         assertThat(out.toString(), is(
                 String.format(
                         "==== Menu ====%n"
@@ -253,7 +256,7 @@ public class StartUITest {
     @Test
     public void whenFindItemName() throws SQLException {
         Output out = new StubOutput();
-        Item item = tracker.add(new Item("Item"));
+        Item item = memTracker.add(new Item("Item"));
         String name = "Item";
         Input in = new StubInput(
                 new String[]{"0", name, "1"}
@@ -262,7 +265,7 @@ public class StartUITest {
                 new FindNameAction(out),
                 new Exit()
         );
-        new StartUI(out).init(in, tracker, actions);
+        new StartUI(out).init(in, memTracker, actions);
         assertThat(out.toString(), is(
                 String.format(
                         "==== Menu ====%n"
@@ -287,7 +290,7 @@ public class StartUITest {
                 new FindNameAction(out),
                 new Exit()
         );
-        new StartUI(out).init(in, tracker, actions);
+        new StartUI(out).init(in, memTracker, actions);
         assertThat(out.toString(), is(
                 String.format(
                         "==== Menu ====%n"

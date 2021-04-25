@@ -19,14 +19,15 @@ public class ReplaceActionTest {
         Store tracker = new MemTracker();
         tracker.add(new Item("Replaced item"));
         String replacedName = "New item name";
-        var rep = new ReplaceAction(out);
+        var replaceAction = new ReplaceAction(out);
 
         Input input = mock(Input.class);
         when(input.askInt(any(String.class))).thenReturn(1);
         when(input.askStr(any(String.class))).thenReturn(replacedName);
-        rep.execute(input, tracker);
+        replaceAction.execute(input, tracker);
+        String ln = System.lineSeparator();
 
-        assertThat(out.toString(), is("Item with id 1 update\r\n"));
+        assertThat(out.toString(), is("Item with id 1 update" + ln));
         assertThat(tracker.findAll().get(0).getName(), is(replacedName));
     }
 
@@ -35,12 +36,12 @@ public class ReplaceActionTest {
         Output out = new StubOutput();
         Store tracker = new MemTracker();
         tracker.add(new Item("Replaced item"));
-        String replacedName = "New item name";
-        var rep = new ReplaceAction(out);
+        var replaceAction = new ReplaceAction(out);
+
         Input input = mock(Input.class);
-        rep.execute(input, tracker);
+        replaceAction.execute(input, tracker);
+        String ln = System.lineSeparator();
 
-        assertThat(out.toString(), is("No such id\r\n"));
+        assertThat(out.toString(), is("No such id" + ln));
     }
-
 }
