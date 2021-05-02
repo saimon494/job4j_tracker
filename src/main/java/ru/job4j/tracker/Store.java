@@ -1,11 +1,11 @@
 package ru.job4j.tracker;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
 public interface Store extends AutoCloseable {
+
     void init() throws IOException;
 
     Item add(Item item) throws SQLException;

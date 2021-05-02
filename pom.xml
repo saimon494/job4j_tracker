@@ -25,7 +25,7 @@
             <properties>
                 <db.url>jdbc:postgresql://127.0.0.1:5432/tracker</db.url>
                 <db.username>postgres</db.username>
-                <db.password>1331</db.password>
+                <db.password>password</db.password>
                 <db.driver>org.postgresql.Driver</db.driver>
             </properties>
         </profile>
@@ -34,7 +34,7 @@
             <properties>
                 <db.url>jdbc:postgresql://127.0.0.1:5432/tracker</db.url>
                 <db.username>postgres</db.username>
-                <db.password>1331</db.password>
+                <db.password>password</db.password>
                 <db.driver>org.postgresql.Driver</db.driver>
             </properties>
         </profile>
@@ -47,7 +47,7 @@
         <db.driver>org.postgresql.Driver</db.driver>
         <db.url>url=jdbc:postgresql://127.0.0.1:5432/tracker</db.url>
         <db.username>postgres</db.username>
-        <db.password>1331</db.password>
+        <db.password>password</db.password>
     </properties>
 
     <dependencies>
@@ -67,6 +67,12 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.2.18</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>3.5.13</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
@@ -136,7 +142,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
                 <configuration>
-                    <testFailureIgnore>true</testFailureIgnore>
+                    <testFailureIgnore>false</testFailureIgnore>
                 </configuration>
             </plugin>
         </plugins>
