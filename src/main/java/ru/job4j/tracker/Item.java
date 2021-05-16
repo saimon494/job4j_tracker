@@ -12,6 +12,7 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    private String description;
     private LocalDateTime created = LocalDateTime.of(2020,
             9, 24, 22, 0, 0);
 
@@ -29,6 +30,11 @@ public class Item {
     public Item(int id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Item(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
     public int getId() {
@@ -49,6 +55,14 @@ public class Item {
 
     public LocalDateTime getCreated() {
         return created;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

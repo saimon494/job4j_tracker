@@ -14,8 +14,12 @@ public class HibernateRun {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure().build();
         try {
-            SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+            SessionFactory sf = new MetadataSources(registry)
+                    .buildMetadata()
+                    .buildSessionFactory();
             Item item = create(new Item("Learn Hibernate"), sf);
+            Item item1 = create(new Item("Learn Hibernate 1", "description 1"), sf);
+            Item item2 = create(new Item("Learn Hibernate 2", "description 2"), sf);
             System.out.println(item);
             item.setName("Learn Hibernate 5.");
             update(item, sf);
