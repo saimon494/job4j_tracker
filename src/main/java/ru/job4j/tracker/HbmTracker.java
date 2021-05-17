@@ -49,7 +49,7 @@ public class HbmTracker implements Store, AutoCloseable {
         session.delete(item);
         session.getTransaction().commit();
         session.close();
-        return false;
+        return true;
     }
 
     @Override
