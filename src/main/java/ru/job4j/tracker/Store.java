@@ -14,7 +14,7 @@ public interface Store extends AutoCloseable {
 
     boolean delete(int id) throws SQLException;
 
-    List<Item> findAll() throws SQLException;
+    List<Item> findAll(Observe<Item> observe) throws SQLException;
 
     List<Item> findByName(String name) throws SQLException;
 
