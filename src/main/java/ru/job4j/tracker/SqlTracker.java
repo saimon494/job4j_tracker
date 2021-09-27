@@ -74,7 +74,7 @@ public class SqlTracker implements Store {
     }
 
     @Override
-    public List<Item> findAll(Observe<Item> observe) throws SQLException {
+    public List<Item> findAll() throws SQLException {
         List<Item> items = new ArrayList<>();
         try (PreparedStatement statement =
                      cn.prepareStatement("select * from items")) {
@@ -84,7 +84,6 @@ public class SqlTracker implements Store {
                             String.valueOf(resultSet.getInt("id")),
                             resultSet.getString("name")
                     );
-                    observe.receive(item);
                     items.add(item);
                 }
             }
