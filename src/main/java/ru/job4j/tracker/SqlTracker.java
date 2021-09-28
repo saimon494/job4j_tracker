@@ -80,11 +80,10 @@ public class SqlTracker implements Store {
                      cn.prepareStatement("select * from items")) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Item item = new Item(
-                            String.valueOf(resultSet.getInt("id")),
+                    items.add(new Item(
+                            resultSet.getInt("id"),
                             resultSet.getString("name")
-                    );
-                    items.add(item);
+                    ));
                 }
             }
         }
