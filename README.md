@@ -38,5 +38,4 @@
 ![Tracker](images/tracker.png)
 
 ## Контакты
-
-[Telegram](https://t.me/Saimon494)
+[![Telegram](https://img.shields.io/badge/Telegram-blue?logo=telegram)](https://t.me/Saimon494)
