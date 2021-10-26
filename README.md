@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.com/saimon494/job4j_tracker.svg?branch=master)](https://travis-ci.com/saimon494/job4j_tracker)
 [![codecov](https://codecov.io/gh/saimon494/job4j_tracker/branch/master/graph/badge.svg?token=914M0JB7LB)](https://codecov.io/gh/saimon494/job4j_tracker)
 ---
-## О проекте
+## О проекте  
 
 Проект представляет собой консольное приложение, систему заявок, которые хранятся в БД.
 Исходный код проекта располагается в пакете ru.job4j.tracker. Возможно выполнять следующие действия с заявками:  
@@ -15,9 +15,7 @@
 - найти по имени (Find item by name),
 - выйти из программы (Exit).
 
-Работа приложения показана ниже. 
-  
-![Tracker](images/tracker.gif)
+![Tracker](images/tracker.png)
 
 ## Сборка
 
@@ -34,8 +32,9 @@
 
 Когда jar-архив собран и БД подготовлена, можно запускать приложение из папки target командой  
 `java -jar .\Tracker.jar`. После запуска из меню доступны все операции с заявками.  
-  
-![Tracker](images/tracker.png)
+Работа приложения показана ниже.
+
+![Tracker](images/tracker.gif)
 
 ## Контакты
 [![Telegram](https://img.shields.io/badge/Telegram-blue?logo=telegram)](https://t.me/Saimon494)
